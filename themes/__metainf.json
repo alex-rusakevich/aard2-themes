@@ -1,0 +1,11 @@
+{
+    "gruvbox-material-dark": {
+        "author": "@sainnhe",
+        "repo": "https://github.com/sainnhe/gruvbox-material-vscode"
+    },
+
+    "gruvbox-material-light": {
+        "author": "@sainnhe",
+        "repo": "https://github.com/sainnhe/gruvbox-material-vscode"
+    }
+}

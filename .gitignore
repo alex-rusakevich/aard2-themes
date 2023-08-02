@@ -1,1 +1,2 @@
 themes/*.json
+!themes/__metainf.json

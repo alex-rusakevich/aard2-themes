@@ -1,0 +1,28 @@
+body {
+    background-color: $bg_color;
+    color: $font_color;
+}
+
+a {
+    color: $a_color;
+}
+
+a:visited {
+    color: $a_color_visited;
+}
+
+a:active {
+    color: $a_color_active;
+}
+
+.tr {
+    color: $tr_color;
+}
+
+.pos {
+    color: $pos_color;
+}
+
+.co {
+    color: $co_color;
+}
