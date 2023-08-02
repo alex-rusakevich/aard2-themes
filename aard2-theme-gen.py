@@ -7,7 +7,7 @@
 """
 
 __author__ = "Alexander Rusakevich"
-__version_arr__ = (0, 0, 2)
+__version_arr__ = (0, 0, 3)
 __version__ = "v" + ".".join([str(i) for i in __version_arr__])
 
 import os
@@ -84,9 +84,10 @@ def convert_to_css(file_name: str) -> None:
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
 
-        css_theme_code = CSS_BASE.replace(";", " !important;")
+        css_theme_code = CSS_BASE
+
         for k, v in colors.items():
-            css_theme_code = re.sub(fr"\${k}(?=\b)", v, css_theme_code)
+            css_theme_code = re.sub(fr"\${k}(?=\W)", v, css_theme_code)
 
         f.write(css_theme_code)
 

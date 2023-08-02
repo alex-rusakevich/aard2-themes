@@ -1,0 +1,11 @@
+{
+  "name": "aard2-themes",
+  "version": "1.0.0",
+  "description": "aard2-themes\r ===",
+  "main": "index.js",
+  "scripts": {
+    "aard2-theme-gen": "pipenv run python aard2-theme-gen.py"
+  },
+  "author": "Alexander Rusakevich",
+  "license": "ISC"
+}
