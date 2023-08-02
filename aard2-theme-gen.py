@@ -7,7 +7,7 @@
 """
 
 __author__ = "Alexander Rusakevich"
-__version_arr__ = (0, 0, 3)
+__version_arr__ = (0, 0, 5)
 __version__ = "v" + ".".join([str(i) for i in __version_arr__])
 
 import os
@@ -36,9 +36,17 @@ colors = {
 CSS_BASE = open("base_theme.scss", "r", encoding="utf8").read()
 
 
+def fallback_get(dic, *args):
+    for arg in args:
+        if arg in dic:
+            return dic[arg]
+
+    return None
+
+
 def convert_to_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
-    css_theme_path = os.path.splitext(file_name)[0] + ".css"
+    css_theme_path = os.path.splitext(file_name)[0] + ".aard2.css"
 
     style_file = None
     with open(file_name, "r", encoding="utf8") as f:
@@ -64,8 +72,10 @@ def convert_to_css(file_name: str) -> None:
  * Theme: {theme_name}
  * Type: {theme_type}
  *
- * Original author: {metainf["author"]}
+ * Original author of the theme: {metainf["author"]}
  * Repo: {metainf["repo"]}
+ * 
+ * Special thanks to @itkach for his Aard2!
  */
 """.strip() + (2*"\n")
 
@@ -74,9 +84,12 @@ def convert_to_css(file_name: str) -> None:
     colors["bg_color"] = file_colors["editor.background"]
     colors["font_color"] = file_colors["editor.foreground"]
 
-    colors["a_color"] = file_colors["terminal.ansiCyan"]
-    colors["a_color_active"] = file_colors["terminal.ansiBlue"]
-    colors["a_color_visited"] = file_colors["terminal.ansiBrightMagenta"]
+    colors["a_color"] = fallback_get(
+        file_colors, "textLink.foreground", "inputValidation.infoBorder", "terminal.ansiCyan")
+    colors["a_color_active"] = fallback_get(
+        file_colors, "textLink.activeForeground", "inputValidation.infoBackground", "terminal.ansiBlue")
+    colors["a_color_visited"] = fallback_get(
+        file_colors, "inputValidation.errorBackground", "terminal.ansiBrightMagenta")
 
     colors["tr_color"] = file_colors["terminal.ansiYellow"]
     colors["pos_color"] = file_colors["terminal.ansiGreen"]
