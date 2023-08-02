@@ -44,7 +44,8 @@ def convert_to_css(file_name: str) -> None:
     with open(file_name, "r", encoding="utf8") as f:
         style_file = json.load(f)
 
-    metainf = json.load(open(os.path.join(".", "themes", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
+    metainf = json.load(open(os.path.join(
+        ".", "themes", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
 
     theme_name = style_file.get("name", theme_file_stem)
     theme_type = style_file.get("type", "unknown")
@@ -70,16 +71,16 @@ def convert_to_css(file_name: str) -> None:
 
     file_colors = style_file["colors"]
 
-    colors["bg_color"]           = file_colors["editor.background"]
-    colors["font_color"]         = file_colors["editor.foreground"]
+    colors["bg_color"] = file_colors["editor.background"]
+    colors["font_color"] = file_colors["editor.foreground"]
 
-    colors["a_color"]            = file_colors["terminal.ansiCyan"]
-    colors["a_color_active"]     = file_colors["terminal.ansiBlue"]
-    colors["a_color_visited"]    = file_colors["terminal.ansiBrightMagenta"]
+    colors["a_color"] = file_colors["terminal.ansiCyan"]
+    colors["a_color_active"] = file_colors["terminal.ansiBlue"]
+    colors["a_color_visited"] = file_colors["terminal.ansiBrightMagenta"]
 
-    colors["tr_color"]           = file_colors["terminal.ansiYellow"]
-    colors["pos_color"]          = file_colors["terminal.ansiGreen"]
-    colors["co_color"]           = file_colors["terminal.ansiBrightBlack"]
+    colors["tr_color"] = file_colors["terminal.ansiYellow"]
+    colors["pos_color"] = file_colors["terminal.ansiGreen"]
+    colors["co_color"] = file_colors["terminal.ansiBrightBlack"]
 
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
@@ -95,18 +96,18 @@ def convert_to_css(file_name: str) -> None:
 def main():
     colorama.init(autoreset=True)
 
-    json_files = [f for f in glob.glob(os.path.join(".", "themes", "*.json")) 
-        if not pathlib.Path(f).stem.startswith("__")]
+    json_files = [f for f in glob.glob(os.path.join(".", "themes", "*.json"))
+                  if not pathlib.Path(f).stem.startswith("__")]
     for json_file in json_files:
         print(f"Generating the theme for '{json_file}'...", end=" ")
 
         try:
             convert_to_css(json_file)
         except:
-            print(Fore.LIGHTRED_EX +  "Fail")
+            print(Fore.LIGHTRED_EX + "Fail")
             print(traceback.format_exc())
         else:
-            print(Fore.LIGHTGREEN_EX +  "OK")
+            print(Fore.LIGHTGREEN_EX + "OK")
 
 
 if __name__ == "__main__":
