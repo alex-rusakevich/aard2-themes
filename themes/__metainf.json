@@ -12,5 +12,15 @@
     "monokai-color-theme": {
         "author": "@microsoft",
         "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
+    },
+
+    "solarized-dark-color-theme": {
+        "author": "@microsoft",
+        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
+    },
+
+    "solarized-light-color-theme": {
+        "author": "@microsoft",
+        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
     }
 }
