@@ -7,5 +7,10 @@
     "gruvbox-material-light": {
         "author": "@sainnhe",
         "repo": "https://github.com/sainnhe/gruvbox-material-vscode"
+    },
+
+    "monokai-color-theme": {
+        "author": "@microsoft",
+        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
     }
 }
