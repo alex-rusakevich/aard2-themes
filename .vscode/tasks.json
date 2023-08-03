@@ -3,10 +3,10 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "aard2-theme-gen",
+            "script": "a2tg",
             "problemMatcher": [],
-            "label": "pipenv: aard2-theme-gen.py",
-            "detail": "pipenv run python aard2-theme-gen.py"
+            "label": "pipenv: a2tg.py",
+            "detail": "pipenv run python a2tg.py"
         }
     ]
 }

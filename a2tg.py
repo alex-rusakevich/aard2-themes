@@ -44,7 +44,7 @@ def fallback_get(dic, *args):
     return None
 
 
-def convert_to_css(file_name: str) -> None:
+def convert_json_to_aard2_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
     css_theme_path = os.path.splitext(file_name)[0] + ".aard2.css"
 
@@ -95,6 +95,11 @@ def convert_to_css(file_name: str) -> None:
     colors["pos_color"] = file_colors["terminal.ansiGreen"]
     colors["co_color"] = file_colors["terminal.ansiBrightBlack"]
 
+    for k, v in colors.items():
+        if v == None:
+            raise SyntaxError(
+                f"Cannot find color for {k} in '{file_name}'. Please, check this theme or use another one")
+
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
 
@@ -109,13 +114,17 @@ def convert_to_css(file_name: str) -> None:
 def main():
     colorama.init(autoreset=True)
 
+    ignored_stems = json.load(
+        open(os.path.join(".", "themes", "__ignore.json"), "r", encoding="utf8"))
+
     json_files = [f for f in glob.glob(os.path.join(".", "themes", "*.json"))
-                  if not pathlib.Path(f).stem.startswith("__")]
+                  if not pathlib.Path(f).stem.startswith("__")
+                  and pathlib.Path(f).stem not in ignored_stems]
     for json_file in json_files:
         print(f"Generating the theme for '{json_file}'...", end=" ")
 
         try:
-            convert_to_css(json_file)
+            convert_json_to_aard2_css(json_file)
         except:
             print(Fore.LIGHTRED_EX + "Fail")
             print(traceback.format_exc())

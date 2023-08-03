@@ -1,2 +1,3 @@
 themes/*.json
 !themes/__metainf.json
+!themes/__ignore.json
