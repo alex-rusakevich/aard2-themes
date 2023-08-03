@@ -1,34 +1,41 @@
 {
     "aard2-orig-light": {
         "author": "@itkach",
-        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css"
+        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css",
+        "download_link": "https://raw.githubusercontent.com/itkach/xdxf2slob/master/xdxf2slob/css/default.css"
     },
     "aard2-orig-dark": {
         "author": "@itkach",
-        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css"
+        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css",
+        "download_link": "https://raw.githubusercontent.com/itkach/xdxf2slob/master/xdxf2slob/css/night.css"
     },
     "gruvbox-material-dark": {
         "author": "@sainnhe",
-        "repo": "https://github.com/sainnhe/gruvbox-material-vscode"
+        "repo": "https://github.com/sainnhe/gruvbox-material-vscode",
+        "download_link": "https://raw.githubusercontent.com/sainnhe/gruvbox-material-vscode/master/themes/gruvbox-material-dark.json"
     },
 
     "gruvbox-material-light": {
         "author": "@sainnhe",
-        "repo": "https://github.com/sainnhe/gruvbox-material-vscode"
+        "repo": "https://github.com/sainnhe/gruvbox-material-vscode",
+        "download_link": "https://raw.githubusercontent.com/sainnhe/gruvbox-material-vscode/master/themes/gruvbox-material-light.json"
     },
 
-    "monokai-color-theme": {
+    "monokai": {
         "author": "@microsoft",
-        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
+        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/",
+        "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json"
     },
 
-    "solarized-dark-color-theme": {
+    "solarized-dark": {
         "author": "@microsoft",
-        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
+        "repo": "https://github.com/microsoft/vscode/tree/main/extensions/theme-solarized-dark",
+        "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-solarized-dark/themes/solarized-dark-color-theme.json"
     },
 
-    "solarized-light-color-theme": {
+    "solarized-light": {
         "author": "@microsoft",
-        "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/"
+        "repo": "https://github.com/microsoft/vscode/tree/main/extensions/theme-solarized-light/themes",
+        "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-solarized-light/themes/solarized-light-color-theme.json"
     }
 }

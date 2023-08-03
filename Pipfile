@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 colorama = "*"
+urllib3 = "*"
+jsonstrip = "*"
 
 [dev-packages]
 

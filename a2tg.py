@@ -15,6 +15,11 @@ import colorama
 import re
 import traceback
 import pathlib
+import sys
+import urllib3
+import shutil
+import jsonstrip
+from http.client import responses
 from colorama import Fore
 
 colors = {
@@ -62,8 +67,8 @@ def convert_json_to_aard2_css(file_name: str) -> None:
         ".", "themes", theme_file_stem + ".aard2.css")
 
     style_file = None
-    with open(file_name, "r", encoding="utf8") as f:
-        style_file = json.load(f)
+    with open(file_name, "r", encoding="utf8") as file:
+        style_file = json.loads(jsonstrip.strip(file.read()))
 
     metainf = json.load(open(os.path.join(
         ".", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
@@ -161,8 +166,44 @@ def convert_css_to_aard2_css(file_name: str) -> None:
         f.write("\n")
 
 
+def download_themes() -> None:
+    print(Fore.LIGHTGREEN_EX + "The download has started!")
+
+    metainf_file = json.load(open(os.path.join(
+        ".", "__metainf.json"), "r", encoding="utf8"))
+
+    download_queue = []
+
+    for k, v in metainf_file.items():
+        _, file_extension = os.path.splitext(v["download_link"])
+        dest = os.path.join(".", "src", k + file_extension)
+        download_queue.append((v["download_link"], dest))
+
+    c = urllib3.PoolManager()
+
+    for links in download_queue:
+        print(
+            f"Downloading '{os.path.split(links[1])[1]}' to ./src/...", end=" ")
+
+        resp_status = None
+
+        with c.request('GET', links[0], preload_content=False) as resp, open(links[1], 'wb') as out_file:
+            shutil.copyfileobj(resp, out_file)
+            resp_status = resp.status
+
+        if int(resp_status) == 200:
+            print(Fore.LIGHTGREEN_EX + "OK")
+        else:
+            print(Fore.LIGHTRED_EX + "Fail")
+            print(f"HTTP {resp_status}: {responses[resp_status]}")
+
+
 def main():
     colorama.init(autoreset=True)
+
+    if len(sys.argv) == 2 and sys.argv[1] == "download":
+        download_themes()
+        sys.exit(0)
 
     ignored_stems = [pathlib.Path(f).stem for f in json.load(
         open(os.path.join(".", "__ignore.json"), "r", encoding="utf8"))["ignore"]]
