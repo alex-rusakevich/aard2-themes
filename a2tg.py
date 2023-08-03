@@ -58,14 +58,15 @@ def fallback_get(dic, *args):
 
 def convert_json_to_aard2_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
-    css_theme_path = os.path.splitext(file_name)[0] + ".aard2.css"
+    css_theme_path = os.path.join(
+        ".", "themes", theme_file_stem + ".aard2.css")
 
     style_file = None
     with open(file_name, "r", encoding="utf8") as f:
         style_file = json.load(f)
 
     metainf = json.load(open(os.path.join(
-        ".", "themes", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
+        ".", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
 
     theme_name = style_file.get("name", theme_file_stem)
     theme_type = style_file.get("type", "unknown")
@@ -123,14 +124,15 @@ def convert_json_to_aard2_css(file_name: str) -> None:
 
 def convert_css_to_aard2_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
-    css_theme_path = os.path.splitext(file_name)[0] + ".aard2.css"
+    css_theme_path = os.path.join(
+        ".", "themes", theme_file_stem + ".aard2.css")
 
     style_file = None
     with open(file_name, "r", encoding="utf8") as f:
         style_file = f.read().strip()
 
     metainf = json.load(open(os.path.join(
-        ".", "themes", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
+        ".", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
 
     theme_name = theme_file_stem
     theme_type = "unknown"
@@ -163,12 +165,12 @@ def main():
     colorama.init(autoreset=True)
 
     ignored_stems = [pathlib.Path(f).stem for f in json.load(
-        open(os.path.join(".", "themes", "__ignore.json"), "r", encoding="utf8"))["ignore"]]
+        open(os.path.join(".", "__ignore.json"), "r", encoding="utf8"))["ignore"]]
 
     if ignored_stems != []:
         print("Ignoring " + Fore.LIGHTYELLOW_EX + ", ".join(ignored_stems))
 
-    json_files = [f for f in glob.glob(os.path.join(".", "themes", "*.json"))
+    json_files = [f for f in glob.glob(os.path.join(".", "src", "*.json"))
                   if not pathlib.Path(f).stem.startswith("__")
                   and pathlib.Path(f).stem not in ignored_stems]
     for json_file in json_files:
@@ -182,7 +184,7 @@ def main():
         else:
             print(Fore.LIGHTGREEN_EX + "OK")
 
-    css_files = [f for f in glob.glob(os.path.join(".", "themes", "*.css"))
+    css_files = [f for f in glob.glob(os.path.join(".", "src", "*.css"))
                  if not f.endswith(".aard2.css")
                  and pathlib.Path(f).stem not in ignored_stems]
     for css_file in css_files:
