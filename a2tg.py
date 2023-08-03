@@ -61,6 +61,16 @@ def fallback_get(dic, *args):
     return None
 
 
+def gen_injection(inj_name) -> str:
+    if not inj_name:
+        return ""
+
+    real_inj_name = inj_name + ".css"
+    css_inj_title = f"/* ========= {real_inj_name} ========= */"
+    return "\n\n" + css_inj_title + "\n\n" + (open(os.path.join(".", "src", "injections",
+                                                                inj_name + ".css"), "r", encoding="utf8").read().strip() if inj_name else "")
+
+
 def convert_json_to_aard2_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
     css_theme_path = os.path.join(
@@ -71,7 +81,7 @@ def convert_json_to_aard2_css(file_name: str) -> None:
         style_file = json.loads(jsonstrip.strip(file.read()))
 
     metainf = json.load(open(os.path.join(
-        ".", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
+        ".", "__build.json"), "r", encoding="utf8"))[theme_file_stem]
 
     theme_name = style_file.get("name", theme_file_stem)
     theme_type = style_file.get("type", "unknown")
@@ -94,6 +104,7 @@ def convert_json_to_aard2_css(file_name: str) -> None:
     }
 
     CSS_HEAD = CSS_HEAD_BASE.format(**CSS_HEAD_ARGS)
+    CSS_INJECTION = gen_injection(metainf["inject"])
 
     file_colors = style_file["colors"]
 
@@ -124,7 +135,9 @@ def convert_json_to_aard2_css(file_name: str) -> None:
         for k, v in colors.items():
             css_theme_code = re.sub(fr"\${k}(?=\W)", v, css_theme_code)
 
-        f.write(css_theme_code)
+        f.write(css_theme_code.strip())
+        f.write(CSS_INJECTION)
+        f.write("\n")
 
 
 def convert_css_to_aard2_css(file_name: str) -> None:
@@ -137,10 +150,12 @@ def convert_css_to_aard2_css(file_name: str) -> None:
         style_file = f.read().strip()
 
     metainf = json.load(open(os.path.join(
-        ".", "__metainf.json"), "r", encoding="utf8"))[theme_file_stem]
+        ".", "__build.json"), "r", encoding="utf8"))[theme_file_stem]
 
     theme_name = theme_file_stem
     theme_type = "unknown"
+
+    CSS_INJECTION = gen_injection(metainf["inject"])
 
     if "light" in theme_file_stem.lower() or "light" in theme_name.lower():
         theme_type = "light"
@@ -163,6 +178,7 @@ def convert_css_to_aard2_css(file_name: str) -> None:
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
         f.write(style_file)
+        f.write(CSS_INJECTION)
         f.write("\n")
 
 
@@ -170,7 +186,7 @@ def download_themes() -> None:
     print(Fore.LIGHTGREEN_EX + "The download has started!")
 
     metainf_file = json.load(open(os.path.join(
-        ".", "__metainf.json"), "r", encoding="utf8"))
+        ".", "__build.json"), "r", encoding="utf8"))
 
     download_queue = []
 

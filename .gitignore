@@ -1,5 +1,5 @@
 src/*.json
-!src/__metainf.json
+!src/__build.json
 !src/__ignore.json
 !src/nothing.json
 
