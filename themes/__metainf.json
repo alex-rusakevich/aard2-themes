@@ -1,4 +1,12 @@
 {
+    "aard2-orig-light": {
+        "author": "@itkach",
+        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css"
+    },
+    "aard2-orig-dark": {
+        "author": "@itkach",
+        "repo": "https://github.com/itkach/xdxf2slob/blob/master/xdxf2slob/css"
+    },
     "gruvbox-material-dark": {
         "author": "@sainnhe",
         "repo": "https://github.com/sainnhe/gruvbox-material-vscode"

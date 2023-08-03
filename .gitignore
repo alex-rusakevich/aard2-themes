@@ -1,3 +1,7 @@
 themes/*.json
 !themes/__metainf.json
 !themes/__ignore.json
+!themes/nothing.json
+
+themes/*.css
+!themes/*.aard2.css
