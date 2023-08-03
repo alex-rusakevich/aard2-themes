@@ -4,7 +4,8 @@
   "description": "aard2-themes",
   "main": "index.js",
   "scripts": {
-    "a2tg": "pipenv run python a2tg.py"
+    "a2tg": "pipenv run python a2tg.py",
+    "a2tg_download": "pipenv run python a2tg.py download"
   },
   "author": "Alexander Rusakevich",
   "license": "Apache-2.0"

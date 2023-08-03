@@ -7,6 +7,13 @@
             "problemMatcher": [],
             "label": "pipenv: a2tg.py",
             "detail": "pipenv run python a2tg.py"
+        },
+        {
+            "type": "npm",
+            "script": "a2tg_download",
+            "problemMatcher": [],
+            "label": "pipenv: a2tg.py download",
+            "detail": "pipenv run python a2tg.py download"
         }
     ]
 }
