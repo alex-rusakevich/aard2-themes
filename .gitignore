@@ -7,3 +7,6 @@ src/*.css
 !src/*.aard2.css
 
 .venv/
+build/
+dist/
+__pycache__/
