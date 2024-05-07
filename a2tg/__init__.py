@@ -21,18 +21,18 @@ CSS_HEAD_BASE = """
  * 
  * Special thanks to @itkach for his Aard2!
  */
-""".strip() + ("\n")
+""".strip() + (
+    "\n"
+)
 
 
 colors = {
     "bg_color": "black",
     "font_color": "#a0a0a0",
-
     "a_color": "#a3964e",
     "a_color_active": "#faa700",
     "a_color_visited": "#735a0a",
-
     "tr_color": "orangered",
     "pos_color": "green",
-    "co_color": "#888888"
+    "co_color": "#888888",
 }

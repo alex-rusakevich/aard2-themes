@@ -1,16 +1,18 @@
-import os
 import json
-import urllib3
+import os
 import shutil
 from http.client import responses
+
+import urllib3
 from colorama import Fore
 
 
 def download_themes() -> None:
     print(Fore.LIGHTGREEN_EX + "The download has started!")
 
-    metainf_file = json.load(open(os.path.join(
-        ".", "__build.json"), "r", encoding="utf8"))
+    metainf_file = json.load(
+        open(os.path.join(".", "__build.json"), "r", encoding="utf8")
+    )
 
     download_queue = []
 
@@ -22,12 +24,13 @@ def download_themes() -> None:
     c = urllib3.PoolManager()
 
     for links in download_queue:
-        print(
-            f"Downloading '{os.path.split(links[1])[1]}' to ./src/...", end=" ")
+        print(f"Downloading '{os.path.split(links[1])[1]}' to ./src/...", end=" ")
 
         resp_status = None
 
-        with c.request('GET', links[0], preload_content=False) as resp, open(links[1], 'wb') as out_file:
+        with c.request("GET", links[0], preload_content=False) as resp, open(
+            links[1], "wb"
+        ) as out_file:
             shutil.copyfileobj(resp, out_file)
             resp_status = resp.status
 
