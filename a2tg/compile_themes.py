@@ -7,7 +7,6 @@
 """
 
 import glob
-import json
 import os
 import pathlib
 import sys
@@ -19,31 +18,28 @@ from a2tg import *
 from a2tg import __author__, __version__
 from a2tg.convert_css import convert_css_to_aard2_css
 from a2tg.convert_json import convert_json_to_aard2_css
-from a2tg.download import download_themes
 from a2tg.utils import *
 
 
-def main():
-    if len(sys.argv) == 2 and sys.argv[1] == "download":
-        download_themes()
-        sys.exit(0)
-
-    ignored_stems = [
-        pathlib.Path(f).stem
-        for f in json.load(
-            open(os.path.join(".", "__ignore.json"), "r", encoding="utf8")
-        )["ignore"]
-    ]
-
-    if ignored_stems != []:
-        print("Ignoring " + Fore.LIGHTYELLOW_EX + ", ".join(ignored_stems))
+def compile_themes():
+    print(Fore.LIGHTGREEN_EX + "Compiling...")
 
     json_files = [
         f
-        for f in glob.glob(os.path.join(".", "src", "*.json"))
+        for f in glob.glob(os.path.join(THEMES_FOLDER, "*.json"))
         if not pathlib.Path(f).stem.startswith("__")
-        and pathlib.Path(f).stem not in ignored_stems
     ]
+
+    css_files = [
+        f
+        for f in glob.glob(os.path.join(THEMES_FOLDER, "*.css"))
+        if not f.endswith(".aard2.css")
+    ]
+
+    if not css_files and not json_files:
+        print(Fore.LIGHTRED_EX + "No files to convert! Please, download them first")
+        sys.exit(1)
+
     for json_file in json_files:
         print(f"Generating the theme for '{json_file}'...", end=" ")
 
@@ -55,11 +51,6 @@ def main():
         else:
             print(Fore.LIGHTGREEN_EX + "OK")
 
-    css_files = [
-        f
-        for f in glob.glob(os.path.join(".", "src", "*.css"))
-        if not f.endswith(".aard2.css") and pathlib.Path(f).stem not in ignored_stems
-    ]
     for css_file in css_files:
         print(f"Generating the theme for '{css_file}'...", end=" ")
 
@@ -71,6 +62,4 @@ def main():
         else:
             print(Fore.LIGHTGREEN_EX + "OK")
 
-
-if __name__ == "__main__":
-    main()
+    print(Fore.LIGHTGREEN_EX + "Done!")

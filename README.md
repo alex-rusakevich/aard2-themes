@@ -1,14 +1,17 @@
 aard2-themes
 ===
 
-Download any `.css` file you wish from `themes` folder, then choose this file in your `Aard2` app.
+Download and unpack the latest archive from Releases section, then choose the theme file you fish in your `Aard2` app.
 
-All the themes are based on the `VSCode` themes, and none is created by me *(read [__build.json](./themes/__build.json) if you want to know where I've downloaded them from)*. I just convert them using [a2tg.py](./a2tg.py).
+> All the themes are based on the `VSCode` themes, and none is created by myself *(read [__build.json](__build.json) if you want to know where the program downloads them from)*. I just convert them.
 
-This repo does not include the original themes, if you want to compile the themes, then download them by writing:
+This repo does not include the original themes, if you want to compile the themes by yourself, install `python >= 3.9` and run:
 
 ```bash
-python a2tg.py download
-```
+# Prepare dependencies
+pip install pipenv
+pipenv install
 
-If you want to create your own, just put the `.json` files in `themes` folder and run `a2tg.py`.
+# Compile themes
+inv build
+```

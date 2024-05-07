@@ -10,7 +10,7 @@ from a2tg.utils import *
 
 def convert_css_to_aard2_css(file_name: str) -> None:
     theme_file_stem = pathlib.Path(file_name).stem
-    css_theme_path = os.path.join(".", "themes", theme_file_stem + ".aard2.css")
+    css_theme_path = os.path.join(RESULT_THEMES_FOLDER, theme_file_stem + ".aard2.css")
 
     style_file = None
     with open(file_name, "r", encoding="utf8") as f:

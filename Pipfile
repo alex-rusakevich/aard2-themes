@@ -12,6 +12,7 @@ jsonstrip = "*"
 invoke = "*"
 black = "*"
 isort = "*"
+pyclean = "*"
 
 [requires]
 python_version = "3.9"

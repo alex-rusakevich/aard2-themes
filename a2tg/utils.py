@@ -21,7 +21,7 @@ def gen_injection(inj_name) -> str:
         + "\n"
         + (
             open(
-                os.path.join(".", "src", "injections", inj_name + ".css"),
+                os.path.join(".", "injections", inj_name + ".css"),
                 "r",
                 encoding="utf8",
             )
