@@ -5,3 +5,5 @@ src/*.json
 
 src/*.css
 !src/*.aard2.css
+
+.venv/

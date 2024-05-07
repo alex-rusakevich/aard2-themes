@@ -4,7 +4,7 @@
 """
 
 __author__ = "Alexander Rusakevich"
-__version_arr__ = (0, 0, 5)
+__version_arr__ = (0, 9)
 __version__ = "v" + ".".join([str(i) for i in __version_arr__])
 
 import os
@@ -50,7 +50,7 @@ CSS_HEAD_BASE = """
  * 
  * Special thanks to @itkach for his Aard2!
  */
-""".strip() + (2*"\n")
+""".strip() + ("\n")
 
 
 def fallback_get(dic, *args):
@@ -67,8 +67,11 @@ def gen_injection(inj_name) -> str:
 
     real_inj_name = inj_name + ".css"
     css_inj_title = f"/* ========= {real_inj_name} ========= */"
-    return "\n\n" + css_inj_title + "\n\n" + (open(os.path.join(".", "src", "injections",
+
+    inj = css_inj_title + "\n" + (open(os.path.join(".", "src", "injections",
                                                                 inj_name + ".css"), "r", encoding="utf8").read().strip() if inj_name else "")
+
+    return inj  + "\n" + f"/* {'=' * (len(css_inj_title) - 6)} */" 
 
 
 def convert_json_to_aard2_css(file_name: str) -> None:
@@ -130,13 +133,16 @@ def convert_json_to_aard2_css(file_name: str) -> None:
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
 
+        f.write("\n")
+        f.write(CSS_INJECTION)
+        f.write("\n\n")
+
         css_theme_code = CSS_BASE
 
         for k, v in colors.items():
             css_theme_code = re.sub(fr"\${k}(?=\W)", v, css_theme_code)
 
         f.write(css_theme_code.strip())
-        f.write(CSS_INJECTION)
         f.write("\n")
 
 
@@ -177,8 +183,12 @@ def convert_css_to_aard2_css(file_name: str) -> None:
 
     with open(css_theme_path, "w", encoding="utf8") as f:
         f.write(CSS_HEAD)
-        f.write(style_file)
+
+        f.write("\n")
         f.write(CSS_INJECTION)
+        f.write("\n\n")
+
+        f.write(style_file)
         f.write("\n")
 
 
