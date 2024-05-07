@@ -19,7 +19,7 @@ def compile(context):
 def pack(context):
     print(Fore.LIGHTGREEN_EX + "Packing...")
 
-    dest_file = f"./dist/themes-a2tg-{__version__}.tar.gz"
+    dest_file = f"./dist/aard2-themes.tar.gz"
     run(f"tar -cvzf {dest_file} -C dist/themes .")
 
     print(
