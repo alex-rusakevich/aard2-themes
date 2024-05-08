@@ -1,5 +1,5 @@
 __author__ = "Alexander Rusakevich"
-__version_arr__ = (1, 3)
+__version_arr__ = (1, 5)
 __version__ = "v" + ".".join([str(i) for i in __version_arr__])
 
 import colorama
