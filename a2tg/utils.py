@@ -6,7 +6,7 @@ def fallback_get(dic, *args):
         if arg in dic:
             return dic[arg]
 
-    return None
+    raise Exception(f"None of keys {args} was found in dictionary")
 
 
 def gen_injection(inj_name) -> str:

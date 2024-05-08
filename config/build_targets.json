@@ -30,19 +30,5 @@
         "repo": "https://github.com/microsoft/vscode/blob/main/extensions/theme-monokai/themes/",
         "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-monokai/themes/monokai-color-theme.json",
         "inject": "base_injection"
-    },
-
-    "solarized-dark": {
-        "author": "@microsoft",
-        "repo": "https://github.com/microsoft/vscode/tree/main/extensions/theme-solarized-dark",
-        "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-solarized-dark/themes/solarized-dark-color-theme.json",
-        "inject": "base_injection"
-    },
-
-    "solarized-light": {
-        "author": "@microsoft",
-        "repo": "https://github.com/microsoft/vscode/tree/main/extensions/theme-solarized-light/themes",
-        "download_link": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/theme-solarized-light/themes/solarized-light-color-theme.json",
-        "inject": "base_injection"
     }
 }

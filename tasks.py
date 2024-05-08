@@ -28,11 +28,11 @@ def pack(context):
     )
 
 
-@task(pre=[download, compile, pack])
-def build(context): ...
-
-
 @task
 def clear(context):
     run("rm -rvf dist build")
     run("pyclean .")
+
+
+@task(pre=[download, compile, pack])
+def build(context): ...
