@@ -1,5 +1,5 @@
 __author__ = "Alexander Rusakevich"
-__version_arr__ = (1, 1)
+__version_arr__ = (1, 2)
 __version__ = "v" + ".".join([str(i) for i in __version_arr__])
 
 import colorama
@@ -13,7 +13,7 @@ RESULT_THEMES_FOLDER.mkdir(parents=True, exist_ok=True)
 THEMES_FOLDER = pathlib.Path(".", "build")
 THEMES_FOLDER.mkdir(parents=True, exist_ok=True)
 
-CSS_BASE = open("base_theme.scss", "r", encoding="utf8").read()
+CSS_BASE = open(pathlib.Path("config", "base_theme.scss"), "r", encoding="utf8").read()
 
 CSS_HEAD_BASE = """
 /* 

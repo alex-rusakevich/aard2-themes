@@ -12,7 +12,7 @@ def download_themes() -> None:
     print(Fore.LIGHTGREEN_EX + "The download has started!")
 
     metainf_file = json.load(
-        open(os.path.join(".", "__build.json"), "r", encoding="utf8")
+        open(os.path.join(".", "config", "build_targets.json"), "r", encoding="utf8")
     )
 
     download_queue = []

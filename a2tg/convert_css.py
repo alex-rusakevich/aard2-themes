@@ -16,9 +16,9 @@ def convert_css_to_aard2_css(file_name: str) -> None:
     with open(file_name, "r", encoding="utf8") as f:
         style_file = f.read().strip()
 
-    metainf = json.load(open(os.path.join(".", "__build.json"), "r", encoding="utf8"))[
-        theme_file_stem
-    ]
+    metainf = json.load(
+        open(os.path.join(".", "config", "build_targets.json"), "r", encoding="utf8")
+    )[theme_file_stem]
 
     theme_name = theme_file_stem
     theme_type = "unknown"
